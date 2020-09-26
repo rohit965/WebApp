@@ -27,11 +27,11 @@ pipeline {
         stage('Publish image into Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('', $DOCKERHUB_CRED) {
+                    docker.withRegistry('https://hub.docker.io', DOCKERHUB_CRED) {
                         DOCKER_IMAGE.push("$BUILD_NUMBER")
                     }
                 }
-
+                
             }
         } 
         
