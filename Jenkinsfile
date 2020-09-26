@@ -8,19 +8,25 @@ pipeline {
     }
     stages {
         stage("'Build' Compile & Package") {
-            sh 'mvn clean package'
+            steps {
+                sh 'mvn clean package'
+            }
         }
 
         stage('Build Docker image') {
-            script {
-                DOCKER_IMAGE = docker.build IMAGE_NAME
+            steps {
+                script {
+                    DOCKER_IMAGE = docker.build IMAGE_NAME
+                }
             }
 
         }
         stage('Publish image into Docker Hub') {
-            script {
-                docker.withRegistry('', DOCKERHUB_CRED) {
-                    DOCKER_IMAGE.push("$BUILD_NUMBER")
+            steps {
+                script {
+                    docker.withRegistry('', DOCKERHUB_CRED) {
+                        DOCKER_IMAGE.push("$BUILD_NUMBER")
+                    }
                 }
             }
         }
