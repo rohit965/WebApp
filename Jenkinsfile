@@ -16,12 +16,12 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    DOCKER_IMAGE = docker.build IMAGE_NAME
+                    DOCKER_IMAGE = docker.build("IMAGE_NAME:$BUILD_NUMBER)
                 }
             }
 
         }
-        stage('Publish image into Docker Hub') {
+        /* stage('Publish image into Docker Hub') {
             steps {
                 script {
                     docker.withRegistry('', DOCKERHUB_CRED) {
@@ -29,7 +29,7 @@ pipeline {
                     }
                 }
             }
-        }
+        } */
         
     }
 }
