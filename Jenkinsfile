@@ -7,6 +7,11 @@ pipeline {
 
     }
     stages {
+        /* stage('Cloning Git') {
+            steps {
+                git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+            }
+        } */
         stage("'Build' Compile & Package") {
             steps {
                 sh 'mvn clean package'
@@ -27,7 +32,7 @@ pipeline {
         stage('Publish image into Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.io', DOCKERHUB_CRED) {
+                    docker.withRegistry('', DOCKERHUB_CRED) {
                         DOCKER_IMAGE.push("$BUILD_NUMBER")
                     }
                 }
