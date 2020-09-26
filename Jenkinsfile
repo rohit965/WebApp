@@ -9,9 +9,13 @@ pipeline {
     stages {
         /* stage('Cloning Git') {
             steps {
-                git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+                git 'https://github.com/rohit965/WebApp.git'
             }
         } */
+        //Build and publish docker images using jenkins scripted pipeline 
+        //https://medium.com/faun/docker-build-push-with-declarative-pipeline-in-jenkins-2f12c2e43807
+        //https://www.edureka.co/community/55640/jenkins-docker-docker-image-jenkins-pipeline-docker-registry
+
         stage("'Build' Compile & Package") {
             steps {
                 sh 'mvn clean package'
@@ -39,6 +43,11 @@ pipeline {
                 
             }
         } 
+        /* stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $IMAGE_NAME:$BUILD_NUMBER"
+            }
+        } */
         
     }
 }
