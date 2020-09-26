@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    DOCKER_IMAGE = docker.build("$IMAGE_NAME:7")
+                    DOCKER_IMAGE = docker.build("$IMAGE_NAME:$BUILD_NUMBER")
                     echo "$BUILD_NUMBER" 
                     echo "$BUILD_ID"
                     echo "$BUILD_TAG"
@@ -24,15 +24,16 @@ pipeline {
             }
 
         }
-        /* stage('Publish image into Docker Hub') {
+        stage('Publish image into Docker Hub') {
             steps {
                 script {
                     docker.withRegistry('', DOCKERHUB_CRED) {
                         DOCKER_IMAGE.push("$BUILD_NUMBER")
                     }
                 }
+                
             }
-        } */
+        } 
         
     }
 }
