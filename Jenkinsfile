@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         IMAGE_NAME = 'rohit965/webapp'
-        DOCKERHUB_CRED = credentials('docker-hub')
+        DOCKERHUB_CRED = 'docker-hub'
         DOCKER_IMAGE = ''
 
     }
@@ -32,7 +32,7 @@ pipeline {
         stage('Publish image into Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CRED) {
+                    docker.withRegistry('', DOCKERHUB_CRED) {
                         DOCKER_IMAGE.push("$BUILD_NUMBER")
                     }
                 }
