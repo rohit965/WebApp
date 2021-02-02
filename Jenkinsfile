@@ -45,7 +45,7 @@ pipeline {
         } 
         stage('Deploying container onto Docker hosts') {
             steps {
-                sh 'ssh -i /var/lib/jenkins/.ssh/rsa_id jenkins@34.66.161.175'
+                sh 'ssh -i /var/lib/jenkins/.ssh/id_rsa jenkins@10.128.0.56'
             }
         }
         /* stage('Remove Unused docker image') {
