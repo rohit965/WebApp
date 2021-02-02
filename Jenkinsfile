@@ -37,7 +37,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', DOCKERHUB_CRED) {
-                        DOCKER_IMAGE.push("$BUILD_NUMBER")
+                        DOCKER_IMAGE.push
+                      //DOCKER_IMAGE.push("$BUILD_NUMBER")
                     }
                 }
                 
