@@ -43,6 +43,11 @@ pipeline {
                 
             }
         } 
+        stage('Deploying container onto Docker hosts') {
+            stpes {
+                sh 'ssh -i /var/lib/jenkins/.ssh/rsa_id jenkins@34.66.161.175'
+            }
+        }
         /* stage('Remove Unused docker image') {
             steps{
                 sh "docker rmi $IMAGE_NAME:$BUILD_NUMBER"
