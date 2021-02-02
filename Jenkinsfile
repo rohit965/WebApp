@@ -44,7 +44,7 @@ pipeline {
             }
         } 
         stage('Deploying container onto Docker hosts') {
-            stpes {
+            steps {
                 sh 'ssh -i /var/lib/jenkins/.ssh/rsa_id jenkins@34.66.161.175'
             }
         }
